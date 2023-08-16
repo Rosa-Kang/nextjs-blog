@@ -1,7 +1,9 @@
 'use client';
-
 import Link from 'next/link'
+import Image from 'next/image';
+
 import styles from './navbar.module.css';
+import logo from '../../../public/logo.png'
 
 const links = [
   {
@@ -39,7 +41,9 @@ const links = [
 const Navbar = () => {
   return (
     <div className={styles.container}>
-      <Link className={styles.logo} href="/">Rosia</Link>
+      <Link className={styles.logo} href="/">
+        <Image src={logo} alt='logo' width={90} />
+      </Link>
 
       <div className={styles.links}>
         {links.map((link) => (
