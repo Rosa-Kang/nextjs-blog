@@ -1,9 +1,15 @@
 .container {
-  padding: 20px;
+  padding: 18px 20px;
   cursor: pointer;
   background-color: #53c28b;
   border: none;
   border-radius: 5px;
   width: max-content;
   color: white;
+  transition: 1s all ease;
+}
+
+.container:hover {
+  background-color: #d7f7e7;
+  color: #111;
 }

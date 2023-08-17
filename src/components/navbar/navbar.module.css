@@ -10,6 +10,11 @@
   font-size: 22px;
 }
 
+.logout:hover{
+  background-color: #d7f7e7;
+  color: #111;
+}
+
 .links {
   display: flex;
   align-items: center;
@@ -17,10 +22,11 @@
 }
 
 .logout {
-  padding: 5px;
+  padding: 10px 20px;
   border: none;
   background-color: #53c28b;
   color: white;
   cursor: pointer;
   border-radius: 3px;
+    transition: 1s all ease;
 }
