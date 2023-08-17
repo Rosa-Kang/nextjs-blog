@@ -8,9 +8,10 @@ https://jsonplaceholder.typicode.com/posts
 https://react.dev/reference/react/useContext
 
 [3] Data Fetching
-- On Client Side : Fetch in useEffect() 
-                 : Use s fetching library (React Query, SWR)
+- On Client Side : Fetch in useEffect() --- no recommended because it comes with error and isLoading out of the box & you will be able to mutate your data.
+                 : Use s fetching library (React Query, SWR)  -- recommended!
 - Server Side   : Fetch the data directly from the server Asynchronously.
+                : in Next.js it automatically set the Static Data Fetching, and in this application I used {cache : 'no-store' } syntax to make it dynamic fetching.
 ```
 async function getData() {
     const res = await fetch('url', {
@@ -27,4 +28,18 @@ const Page = async ()=> {
 
     return <main></main>;
 };
+```
+[3.1] Client Side Fetching - SWR
+- npm i swr
+https://swr.vercel.app/
+```
+import useSWR from 'swr'
+ 
+function Profile() {
+  const { data, error, isLoading } = useSWR('/api/user', fetcher)
+ 
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
+  return <div>hello {data.name}!</div>
+}
 ```
