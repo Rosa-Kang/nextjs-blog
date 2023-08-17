@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Resources
+## Concepts that I learned through this PROJECT
 [1] Date fetching test with json placeholder.
 https://jsonplaceholder.typicode.com/posts
 
@@ -43,3 +43,14 @@ function Profile() {
   return <div>hello {data.name}!</div>
 }
 ```
+
+[4] Real Data Connection : using Mongoose
+npm i mongoose
+https://mongoosejs.com/docs/connections.html
+
+[5] Within the Next.js, we can create Dynamic Meta Data for pages
+https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+
+[6] Authentication
+mpn i next-auth
+https://authjs.dev/

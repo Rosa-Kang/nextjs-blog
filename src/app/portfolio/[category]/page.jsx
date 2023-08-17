@@ -10,12 +10,12 @@ const getData = (cat) => {
   if (data) {
     return data;
   }
-
   return notFound();
 };
 
 const Category = ({ params }) => {
   const data = getData(params.category);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.catTitle}>{params.category}</h1>
@@ -29,7 +29,7 @@ const Category = ({ params }) => {
           </div>
           <div className={styles.imgContainer}>
             <Image
-              className={styles.img}
+              className={styles.image}
               fill={true}
               src={item.image}
               alt=""
