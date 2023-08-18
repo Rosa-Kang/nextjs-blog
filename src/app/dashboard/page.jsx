@@ -4,12 +4,14 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 const Dashboard = () => {
+  const [imageSrc, setImageSrc] = useState();
   const session = useSession();
+  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
   const router = useRouter();
-  
   //NEW WAY TO FETCH DATA
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -30,9 +32,27 @@ const Dashboard = () => {
     e.preventDefault();
     const title = e.target[0].value;
     const desc = e.target[1].value;
-    const img = e.target[2].value;
+    const form = e.currentTarget;
     const content = e.target[3].value;
+    const fileInput = Array.from(form.elements).find(({ name }) => name === 'file');
+    const formData = new FormData();
 
+    for ( const file of fileInput.files ) {
+      formData.append('file', file);
+    }
+
+    formData.append('upload_preset', 'kevbdq4m');
+
+    const data = await fetch(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, {
+      method: 'POST',
+      body: formData
+    }).then(r => r.json());
+    ;
+    
+    setImageSrc(data.secure_url);
+    console.log(imageSrc);
+    const img = imageSrc;
+    
     try {
       await fetch("/api/posts", {
         method: "POST",
@@ -47,7 +67,7 @@ const Dashboard = () => {
       mutate();
       e.target.reset()
     } catch (err) {
-      console.log(err);
+      console.log(err, 'post failed.....');
     }
   };
 
@@ -87,13 +107,13 @@ const Dashboard = () => {
           <h1>Add New Post</h1>
           <input type="text" placeholder="Title" className={styles.input} />
           <input type="text" placeholder="Desc" className={styles.input} />
-          <input type="text" placeholder="Image" className={styles.input} />
+          <input type="file" name="file" className={styles.cldWidget} />
           <textarea
             placeholder="Content"
             className={styles.textArea}
             cols="30"
             rows="10"
-          ></textarea>
+          ></textarea> 
           <button className={styles.button}>Send</button>
         </form>
       </div>

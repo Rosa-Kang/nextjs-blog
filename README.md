@@ -52,5 +52,9 @@ https://mongoosejs.com/docs/connections.html
 https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 
 [6] Authentication
-mpn i next-auth
+npn i next-auth
 https://authjs.dev/
+
+[7] For image upload
+npm i next-cloudinary
+https://next.cloudinary.dev/
